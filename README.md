@@ -2,7 +2,7 @@
 ## Authors
 ### Yubo Peng, Luping Xiang, Kun Yang, Feibo Jiang, Kezhi Wang, and Dapeng Oliver Wu
 ## Paper
-### [https://arxiv.org/abs/2503.08726](https://ieeexplore.ieee.org/abstract/document/11165352)
+### [https://ieeexplore.ieee.org/abstract/document/11165352](https://ieeexplore.ieee.org/abstract/document/11165352)
 ## Code
 ### https://github.com/NJU-NINELab/SIMAC.git
 ## Abstract
