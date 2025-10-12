@@ -2,7 +2,7 @@
 ## Authors
 ### Yubo Peng, Luping Xiang, Kun Yang, Feibo Jiang, Kezhi Wang, and Dapeng Oliver Wu
 ## Paper
-### https://arxiv.org/abs/2503.08726
+### [https://arxiv.org/abs/2503.08726](https://ieeexplore.ieee.org/abstract/document/11165352)
 ## Code
 ### https://github.com/NJU-NINELab/SIMAC.git
 ## Abstract
@@ -20,11 +20,16 @@ See [Train.py](Train.py) for more details of the training process of the SIMAC f
 
 ## Citation   
 ```
-@article{peng2025simac,
-  title={Simac: A semantic-driven integrated multimodal sensing and communication framework},
+@ARTICLE{11165352,
   author={Peng, Yubo and Xiang, Luping and Yang, Kun and Jiang, Feibo and Wang, Kezhi and Wu, Dapeng Oliver},
-  journal={arXiv preprint arXiv:2503.08726},
-  year={2025}
-}
+  journal={IEEE Journal on Selected Areas in Communications}, 
+  title={SIMAC: A Semantic-Driven Integrated Multimodal Sensing And Communication Framework}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-1},
+  keywords={Semantics;Radar;Integrated sensing and communication;Visualization;Multimodal sensors;Radar imaging;Accuracy;Multitasking;Decoding;Reviews;Integrated multimodal sensing and communications;semantic communication;large language model;multi-task learning},
+  doi={10.1109/JSAC.2025.3610398}}
+
 ```
 
