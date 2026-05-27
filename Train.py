@@ -250,7 +250,7 @@ def MultiTaskLearning(model, TrainLoader, TestLoader,Loss_record, Test_record):
 
 class Config():
     batch_size = 1
-    training_epoch = 60
+    training_epoch = 10
     SNR_MAX = 26
     SNR_MIN = 0
     Modulations = ["QPSK", "BPSK", "8PSK", "16QAM"]
