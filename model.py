@@ -327,8 +327,9 @@ def biformer_tiny(pretrained=False, pretrained_cfg=None,
         # checkpoint = torch.hub.load_state_dict_from_url(url=url, map_location="cpu", check_hash=True,
         #                                                 file_name=f"{model_key}.pth")
         # model.load_state_dict(checkpoint["model"])
-        checkpoint = torch.load("checkpoints/SE.pth", map_location='cpu',weights_only=True)
-        model.load_state_dict(checkpoint, strict=True)
+        # checkpoint = torch.load("checkpoints/SE.pth", map_location='cpu',weights_only=True)
+        # model.load_state_dict(checkpoint, strict=True)
+        pass
     return model
 
 class ComplexBatchNorm1d(nn.Module):
@@ -457,7 +458,7 @@ class MultimodalSemanticFusion(nn.Module):
         # checkpoint = torch.load("checkpoints/signal1.pth", map_location='cpu', weights_only=True)
         # self.SigSE.load_state_dict(checkpoint)
         # self.SigSE.requires_grad_(False)
-        self.ImgSE = biformer_tiny(pretrained=True)
+        self.ImgSE = biformer_tiny(pretrained=True)#Transformer视觉网络全局语义理解,CNN偏局部,预学习模型
         # self.ImgSE.requires_grad_(False)
         self.CrossAttn = CrossAttentionFusion(dim=dims,num_heads=8)
         self.linear = nn.Linear(512,768)
@@ -466,12 +467,12 @@ class MultimodalSemanticFusion(nn.Module):
     def forward(self,signal, image):
         sig_sf = self.SigSE(signal)
         img_sf = self.ImgSE(image)
-        img_sf = img_sf.permute(0, 2, 3, 1)
+        img_sf = img_sf.permute(0, 2, 3, 1)#调整tensor维度顺序
         img_sf = img_sf.view(img_sf.shape[0],img_sf.shape[1]*img_sf.shape[2],-1)
-        sig_sf = self.norm(sig_sf)
+        sig_sf = self.norm(sig_sf)#稳定训练，把特征分布调正常
         img_sf = self.norm(img_sf)
         mul_sf = F.gelu(self.CrossAttn(img_sf, sig_sf))
-        mul_sf = self.linear(mul_sf)
+        mul_sf = self.linear(mul_sf)#压缩映射成目标特征
         return mul_sf
 
 # LSE
@@ -479,8 +480,8 @@ class LLMSemanticEncoder(nn.Module):
     def __init__(self):
         super(LLMSemanticEncoder, self).__init__()
         # 将特征维度映射到 token 空间
-        self.llm = GPT2Model.from_pretrained("checkpoints/GPT-2")
-        self.tokenizer = GPT2Tokenizer.from_pretrained("checkpoints/GPT-2")
+        self.llm = GPT2Model.from_pretrained("gpt2") #self.llm = GPT2Model.from_pretrained("checkpoints/GPT-2")
+        self.tokenizer = GPT2Tokenizer.from_pretrained("gpt2")#self.tokenizer = GPT2Tokenizer.from_pretrained("checkpoints/GPT-2")
         self.tokenizer.pad_token = self.tokenizer.eos_token  # 使用 eos_token 作为填充符号
         # self.pool = nn.MaxPool1d(2,2)
 
@@ -641,10 +642,10 @@ class SensingSemanticDecoder(nn.Module):
         self.backbone = nn.Sequential(
             nn.Conv2d(1536, 512, 3, 1, 1),
             nn.ReLU(),
-        )
-        self.head_1 = VitDecoder()
-        checkpoint = torch.load("checkpoints/SD.pth", map_location='cpu',weights_only=True)
-        self.head_1.load_state_dict(checkpoint,strict=True)
+        )#CNN恢复图像
+        self.head_1 = VitDecoder()#图像解码器
+       # checkpoint = torch.load("checkpoints/SD.pth", map_location='cpu',weights_only=True)
+       # self.head_1.load_state_dict(checkpoint,strict=True)
         self.conv = nn.Conv2d(512,128,3,1,1)
         self.head_2 = nn.Linear(128 * 7 * 7, 1)
         self.head_3 = nn.Linear(128 * 7 * 7, 1)
@@ -689,7 +690,7 @@ class SIMAC(nn.Module):
 
 
 if __name__ == '__main__':
-    batch_size = 32
+    batch_size = 1#batch_size = 32
     input_dim = 6000
     signal_tensor = torch.randn(batch_size, 10, input_dim, dtype=torch.complex64).cuda()  # Create a complex input tensor
     image = torch.randn((batch_size, 3, 224, 224)).cuda()

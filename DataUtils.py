@@ -63,7 +63,7 @@ class CustomDataset(Dataset):
         # label
         result_path = img_path.replace("result_seg", "result")
         directory, filename = os.path.split(result_path)
-        filename, ST_index = filename.replace(".jpg", "").split("_")
+        filename, ST_index = os.path.basename(img_path).replace(".jpg", "").rsplit("_", 1)#filename, ST_index = filename.replace(".jpg", "").split("_")
         RawImage_path = os.path.join(directory, filename + ".jpg")
         RawImg = Image.open(RawImage_path).convert('RGB')
         RawImg = self.RawImageTr(RawImg)

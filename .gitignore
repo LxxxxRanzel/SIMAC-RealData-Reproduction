@@ -1,0 +1,24 @@
+# datasets
+real_data/
+fake_data/
+data/
+*.zip
+*.npz
+*.pcd
+
+# checkpoints and logs
+checkpoints/
+logs/
+*.pth
+*.pt
+
+# python cache
+__pycache__/
+*.pyc
+
+# vscode
+.vscode/
+
+# system
+.DS_Store
+Thumbs.db
