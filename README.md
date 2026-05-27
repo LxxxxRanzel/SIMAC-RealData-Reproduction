@@ -1,33 +1,53 @@
-# Simac: A semantic-driven integrated multimodal sensing and communication framework
-## Authors
-### Yubo Peng, Luping Xiang, Kun Yang, Feibo Jiang, Kezhi Wang, and Dapeng Oliver Wu
-## Paper
-### [https://ieeexplore.ieee.org/abstract/document/11165352](https://ieeexplore.ieee.org/abstract/document/11165352)
-## Abstract
-Traditional single-modality sensing faces limitations in accuracy and capability, and its decoupled implementation with communication systems increases latency in bandwidth-constrained environments. Additionally, single-task-oriented sensing systems fail to address users' diverse demands. To overcome these challenges, we propose a semantic-driven integrated multimodal sensing and communication (SIMAC) framework. This framework leverages a joint source-channel coding architecture to achieve simultaneous sensing decoding and transmission of sensing results. Specifically, SIMAC first introduces a multimodal semantic fusion (MSF) network, which employs two extractors to extract semantic information from radar signals and images, respectively. MSF then applies cross-attention mechanisms to fuse these unimodal features and generate multimodal semantic representations. Secondly, we present a large language model (LLM)-based semantic encoder (LSE), where relevant communication parameters and multimodal semantics are mapped into a unified latent space and input to the LLM, enabling channel-adaptive semantic encoding. Thirdly, a task-oriented sensing semantic decoder (SSD) is proposed, in which different decoded heads are designed according to the specific needs of tasks. Simultaneously, a multi-task learning strategy is introduced to train the SIMAC framework, achieving diverse sensing services. Finally, experimental simulations demonstrate that the proposed framework achieves diverse sensing services and higher accuracy.
-![img](SIMAC.png)
+# SIMAC Real-Data Reproduction
 
-## Model Definition
-See [model.py](model.py) for an overview of the SIMAC framework, including the MSF, LSE, and SSD modules.
+A reproduction and engineering adaptation of the SIMAC framework using real CARLA-Sionna multimodal wireless data.
 
-## Model Training
-```bash
-accelerate launch --config_file accelerate_config.yaml Train.py
-```
-See [Train.py](Train.py) for more details of the training process of the SIMAC framework.
+---
 
-## Citation   
-```
-@ARTICLE{11165352,
-  author={Peng, Yubo and Xiang, Luping and Yang, Kun and Jiang, Feibo and Wang, Kezhi and Wu, Dapeng Oliver},
-  journal={IEEE Journal on Selected Areas in Communications}, 
-  title={SIMAC: A Semantic-Driven Integrated Multimodal Sensing And Communication Framework}, 
-  year={2025},
-  volume={},
-  number={},
-  pages={1-1},
-  keywords={Semantics;Radar;Integrated sensing and communication;Visualization;Multimodal sensors;Radar imaging;Accuracy;Multitasking;Decoding;Reviews;Integrated multimodal sensing and communications;semantic communication;large language model;multi-task learning},
-  doi={10.1109/JSAC.2025.3610398}}
+# Project Highlights
 
-```
+- Reproduced the SIMAC semantic communication framework
+- Integrated real CARLA camera data and Sionna CIR channel data
+- Built multimodal dataloader and training pipeline
+- Implemented checkpoint saving and resume training
+- Added visualization and metric evaluation tools
 
+---
+
+# Reconstruction Results
+
+## Ground Truth vs Reconstruction
+
+![GT_vs_Rec](assets/GT_vs_Reconstructed.png)
+
+---
+
+# Training Curves
+
+## Training Loss
+
+![loss](assets/train_loss_curve.png)
+
+## PSNR
+
+![psnr](assets/PSNR_curve.png)
+
+## SSIM
+
+![ssim](assets/SSIM_curve.png)
+
+---
+
+# Sensing Metrics
+
+## Angle RMSE
+
+![angle](assets/angle_rmse_curve.png)
+
+## Distance RMSE
+
+![distance](assets/dis_rmse_curve.png)
+
+## Rate RMSE
+
+![rate](assets/rate_rmse_curve.png)
