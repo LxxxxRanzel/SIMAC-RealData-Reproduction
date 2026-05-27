@@ -18,7 +18,7 @@ A reproduction and engineering adaptation of the SIMAC framework using real CARL
 
 ## Ground Truth vs Reconstruction
 
-![GT_vs_Rec](assets/GT_vs_Reconstructed.png)
+![GT_vs_Rec](assets/reconstructions/GT_vs_Reconstructed.png)
 
 ---
 
@@ -26,15 +26,15 @@ A reproduction and engineering adaptation of the SIMAC framework using real CARL
 
 ## Training Loss
 
-![loss](assets/train_loss_curve.png)
+![loss](assets/curves/train_loss_curve.png)
 
 ## PSNR
 
-![psnr](assets/PSNR_curve.png)
+![psnr](assets/curves/PSNR_curve.png)
 
 ## SSIM
 
-![ssim](assets/SSIM_curve.png)
+![ssim](assets/curves/SSIM_curve.png)
 
 ---
 
@@ -42,12 +42,12 @@ A reproduction and engineering adaptation of the SIMAC framework using real CARL
 
 ## Angle RMSE
 
-![angle](assets/angle_rmse_curve.png)
+![angle](assets/curves/angle_rmse_curve.png)
 
 ## Distance RMSE
 
-![distance](assets/dis_rmse_curve.png)
+![distance](assets/curves/dis_rmse_curve.png)
 
 ## Rate RMSE
 
-![rate](assets/rate_rmse_curve.png)
+![rate](assets/curves/rate_rmse_curve.png)
