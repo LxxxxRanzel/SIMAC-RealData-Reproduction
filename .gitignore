@@ -1,24 +1,73 @@
-# datasets
+# =========================
+# Python cache
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =========================
+# Virtual environments
+# =========================
+venv/
+.env/
+.conda/
+
+# =========================
+# VSCode / IDE
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# System files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Dataset
+# =========================
 real_data/
 fake_data/
 data/
-*.zip
-*.npz
-*.pcd
+make_fake_data/
 
-# checkpoints and logs
-checkpoints/
+# large wireless data
+*.npz
+*.npy
+*.pcd
+*.bin
+*.mat
+*.zip
+
+# =========================
+# Logs / checkpoints
+# =========================
 logs/
+checkpoints/
+
 *.pth
 *.pt
 
-# python cache
-__pycache__/
-*.pyc
+# =========================
+# Generated images
+# 默认不上传png
+# =========================
+*.png
+*.jpg
+*.jpeg
 
-# vscode
-.vscode/
+# =========================
+# BUT keep assets images
+# README展示图允许上传
+# =========================
+!assets/
+!assets/**/*.png
+!assets/**/*.jpg
+!assets/**/*.jpeg
 
-# system
-.DS_Store
-Thumbs.db
+# =========================
+# Optional
+# =========================
+*.log
